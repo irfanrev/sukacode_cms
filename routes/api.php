@@ -1,6 +1,10 @@
 <?php
 
 use App\Filament\Resources\ProjectResource;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\Team as ControllersTeam;
 use App\Http\Resources\ClientsResource;
 use App\Http\Resources\FeedbackResource;
 use App\Http\Resources\ProjectResource as ResourcesProjectResource;
@@ -29,29 +33,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/team', function() {
-    $team = Team::all();
+Route::get('/team', [ControllersTeam::class, 'index']);
 
-    return TeamResource::collection($team);
-});
+Route::get('/project', [ProjectController::class, 'index']);
 
-Route::get('/project', function() {
-    $project = Project::all();
+Route::get('/feedback', [FeedbackController::class, 'index']);
 
-    return ResourcesProjectResource::collection($project);
-});
-
-Route::get('/feedback', function() {
-    $feedback = Feedback::all();
-
-    return FeedbackResource::collection($feedback);
-});
-
-Route::get('clients', function() {
-    $clients = Client::all();
-
-    return ClientsResource::collection($clients);
-});
+Route::get('clients', [ClientController::class, 'index']);
 
 Route::get('settings', function() {
     $settings = Setting::all();
