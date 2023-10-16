@@ -1,6 +1,7 @@
 <?php
 
 use App\Filament\Resources\ProjectResource;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProjectController;
@@ -39,7 +40,9 @@ Route::get('/project', [ProjectController::class, 'index']);
 
 Route::get('/feedback', [FeedbackController::class, 'index']);
 
-Route::get('clients', [ClientController::class, 'index']);
+Route::get('/clients', [ClientController::class, 'index']);
+
+Route::get('/blogs', [BlogController::class, 'index']);
 
 Route::get('settings', function() {
     $settings = Setting::all();
